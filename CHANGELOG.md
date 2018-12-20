@@ -1,6 +1,26 @@
 Change Log
 ==========
 
+Version 4.7.1 *(2018-06-28)*
+----------------------------
+
+ * Fix: Redundant argument lint check now works correctly on Kotlin sources.
+
+
+Version 4.7.0 *(2018-03-27)*
+----------------------------
+
+ * Fix: Support lint version 26.1.0.
+ * Fix: Check single-argument log method in TimberExceptionLogging.
+
+
+Version 4.6.1 *(2018-02-12)*
+----------------------------
+
+ * Fix: Lint checks now handle more edge cases around exception and message source.
+ * Fix: Useless `BuildConfig` class is no longer included.
+
+
 Version 4.6.0 *(2017-10-30)*
 ----------------------------
 

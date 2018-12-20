@@ -29,10 +29,15 @@ android {
     textReport true
     textOutput 'stdout'
   }
+
+  // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
+  libraryVariants.all {
+    it.generateBuildConfig.enabled = false
+  }
 }
 
 dependencies {
-  compileOnly deps.annotations
+  implementation deps.annotations
 
   testImplementation deps.annotations
   testImplementation deps.junit
