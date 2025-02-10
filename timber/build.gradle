@@ -1,21 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'checkstyle'
-
-task checkstyle(type: Checkstyle) {
-  configFile rootProject.file('checkstyle.xml')
-  source 'src/main/java'
-  ignoreFailures false
-  showViolations true
-  include '**/*.java'
-
-  classpath = files()
-}
-
-afterEvaluate {
-  if (project.tasks.findByName('check')) {
-    check.dependsOn('checkstyle')
-  }
-}
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'com.vanniktech.maven.publish'
+apply plugin: 'org.jetbrains.dokka' // Must be applied here for publish plugin.
 
 android {
   compileSdkVersion versions.compileSdk
@@ -29,14 +15,10 @@ android {
     textReport true
     textOutput 'stdout'
   }
-
-  // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
-  libraryVariants.all {
-    it.generateBuildConfig.enabled = false
-  }
 }
 
 dependencies {
+  api deps.kotlin.stdlib
   implementation deps.annotations
 
   testImplementation deps.annotations
@@ -44,7 +26,5 @@ dependencies {
   testImplementation deps.truth
   testImplementation deps.robolectric
 
-  lintChecks project(':timber-lint')
+  lintPublish project(':timber-lint')
 }
-
-apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
